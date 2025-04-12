@@ -1,0 +1,10 @@
+{% extends "header.html" %}
+{% block content %}
+<body>
+<div >
+    <h1>{{ ticket.title }} - {{ ticket.status }}</h1>
+    <p>{{ ticket.description}}</p>
+    <p>{{ ticket.created_at }}</p>
+</div>
+</body>
+{% endblock %}

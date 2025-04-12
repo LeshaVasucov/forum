@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <meta charset="UTF-8">
+    <title>Форум</title>
+</head>
+<body>
+    <header>
+        <div >
+        {% if request.path != '/'%}
+            <a href="/"><p>На головну сторінку</p></a>
+        {% endif %}
+        {% if request.path != '/create-ticket'%}
+            <a href="/create-ticket"><p>Задати питання</p></a>
+        {% endif %}
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

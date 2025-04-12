@@ -1,0 +1,37 @@
+.container {
+    margin-bottom: 20px; /* отступ снизу для разделения блоков */
+    padding: 10px;
+    border: 1px solid #ddd; /* легкая рамка вокруг каждого блока */
+    border-radius: 8px; /* скругленные углы */
+    background-color: #f9f9f9; /* светлый фон */
+    max-width: 600px;    
+    min-width: 600px;    
+    max-height: 200px;   
+    min-height: 50px;   
+  }
+
+  /* Стили для элементов внутри контейнера */
+.item {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* легкая тень */
+  }
+
+.item a {
+    font-size: 18px;
+    color: #007bff;
+    text-decoration: none; /* убирает подчеркивание */
+    font-weight: bold;
+  }
+
+.item a:hover {
+    text-decoration: underline; /* подчеркивание при наведении */
+  }
+
+.item p {
+    color: #333;
+    font-size: 14px;
+    margin-top: 10px;
+  }

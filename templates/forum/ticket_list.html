@@ -1,6 +1,17 @@
+{% extends "header.html" %}
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+{% block content %}
 {% for ticket in tickets%}
-    <div class="ticket">
-        <p> {{ticket.status}}</p>
-        <p> {{ticket.title}}</p>
+    <div class="container">
+        <div class="item">
+        <a href="{%url 'ticket-details' ticket.pk%}"> {{ticket.title}}</a>
+        <p> {{ticket.description}}</p>
+        </div>
     </div>
+</body>
 {% endfor %}
+{% endblock %}
