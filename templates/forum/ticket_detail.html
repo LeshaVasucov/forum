@@ -1,10 +1,24 @@
 {% extends "header.html" %}
 {% block content %}
 <body>
-<div >
-    <h1>{{ ticket.title }} - {{ ticket.status }}</h1>
-    <p>{{ ticket.description}}</p>
-    <p>{{ ticket.created_at }}</p>
-</div>
+    <div >
+        <h1>{{ ticket.title }} - {{ ticket.status }}</h1>
+        <p>{{ ticket.description}}</p>
+        <p>{{ ticket.created_at }}</p>
+    </div>
+    <div>
+        {% for comment in ticket.comments.all %}
+        <p>{{ comment.creator }}</p>
+        <p>{{ comment.content }}</p>
+        {% endfor %}
+    </div>
+    <div>
+        <h3>Залишити коментар:</h3>
+        <form action="{% url 'comment-create' ticket.id %}" method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit">Зберегти</button>
+        </form>
+    </div>
 </body>
 {% endblock %}

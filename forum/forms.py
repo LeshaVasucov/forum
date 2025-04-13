@@ -1,4 +1,4 @@
-from forum.models import Ticket
+from forum.models import Ticket , Comment
 from django import forms
 class TicketForm(forms.ModelForm):
     class Meta:
@@ -8,3 +8,8 @@ class TicketForm(forms.ModelForm):
         widgets = {
             "due_date": forms.DateTimeInput(attrs={"type": "datetime-local"}),
         }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ["content"]

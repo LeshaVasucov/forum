@@ -16,3 +16,11 @@ class Ticket(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Comment(models.Model):
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE , related_name="comments")
+    creator = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    
