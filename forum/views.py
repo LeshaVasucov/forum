@@ -1,5 +1,5 @@
-from django.shortcuts import render , get_object_or_404 , redirect
-from forum.models import Ticket , User
+from django.shortcuts import render , get_object_or_404 , redirect , HttpResponseRedirect
+from forum.models import Ticket , Comment , CommentLike
 from forum.forms import TicketForm , CommentForm
 from django.views.generic import ListView , CreateView , DetailView
 from django.urls import reverse_lazy
@@ -45,3 +45,12 @@ def CommentCreate(request, pk):
     else:
         comment_form = CommentForm()
     
+def CommentLikeAdd(request, pk):
+    if request.method == "POST":
+        comment = Comment.objects.get(id=pk)
+        liked = CommentLike.objects.filter(comment=comment, creator=request.user)
+        if liked.exists():
+            liked.delete()
+        else:
+            CommentLike.objects.create(comment=comment, creator=request.user)
+        return HttpResponseRedirect(comment.get_absolute_url())

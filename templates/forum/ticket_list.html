@@ -1,17 +1,13 @@
 {% extends "header.html" %}
-<head>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
 <body>
-{% block content %}
-{% for ticket in tickets%}
-    <div class="container">
-        <div class="item">
-        <a href="{%url 'ticket-details' ticket.pk%}"> {{ticket.title}}</a>
-        <p> {{ticket.description}}</p>
-        </div>
-    </div>
+    {% block content %}
+        {% for ticket in tickets%}
+            <div class="container">
+                <div class="item">
+                    <a href="{%url 'ticket-details' ticket.pk%}"> {{ticket.title}}</a>
+                    <p> {{ticket.description}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% endblock %}
 </body>
-{% endfor %}
-{% endblock %}

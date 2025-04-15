@@ -10,6 +10,10 @@
         {% for comment in ticket.comments.all %}
         <p>{{ comment.creator }}</p>
         <p>{{ comment.content }}</p>
+        <form action="{% url 'comment-like' comment.id %}" method="post">
+            {% csrf_token %}
+        <button type="submit" ><p>Likes : {{ comment.likes.count}} </p></button>
+        </form>
         {% endfor %}
     </div>
     <div>
