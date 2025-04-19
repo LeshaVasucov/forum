@@ -1,9 +1,8 @@
-from django.shortcuts import render , get_object_or_404 , redirect , HttpResponseRedirect
+from django.shortcuts import render , redirect , HttpResponseRedirect
 from forum.models import Ticket , Comment , CommentLike
 from forum.forms import TicketForm , CommentForm
-from django.views.generic import ListView , CreateView , DetailView
+from django.views.generic import ListView , CreateView 
 from django.urls import reverse_lazy
-# Create your views here.
 
 class TicketsListView(ListView):
     model = Ticket
@@ -54,3 +53,4 @@ def CommentLikeAdd(request, pk):
         else:
             CommentLike.objects.create(comment=comment, creator=request.user)
         return HttpResponseRedirect(comment.get_absolute_url())
+    
