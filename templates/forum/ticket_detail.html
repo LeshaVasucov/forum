@@ -1,12 +1,12 @@
-{% extends "header.html" %}
+{% extends "base.html" %}
 {% block content %}
 <body>
-    <div >
+    <div class="ticket-details" >
         <h1>{{ ticket.title }} - {{ ticket.status }}</h1>
         <p>{{ ticket.description}}</p>
         <p>{{ ticket.created_at }}</p>
     </div>
-    <div>
+    <div class="comment">
         {% for comment in ticket.comments.all %}
         <p>{{ comment.creator }}</p>
         <p>{{ comment.content }}</p>
