@@ -108,7 +108,7 @@ header a p:hover {
   color: #333;
 }
 
-.comment button {
+.like {
   background: #007bff;
   color: white;
   border: none;
@@ -116,12 +116,7 @@ header a p:hover {
   border-radius: 4px;
   font-size: 13px;
   cursor: pointer;
-}
-
-.comment button:hover {
-  background: #0056b3;
-}
-
+} 
 .btn {
   padding: 6px 12px;
   border-radius: 4px;
@@ -130,12 +125,12 @@ header a p:hover {
   transition: background-color 0.3s;
 }
 
-.btn-like {
-  background-color: #ff0000;
+.liked {
+  background: rgb(255, 0, 68);
   color: white;
-}
-
-.btn-liked {
-  background-color: #28a745;
-  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
 }

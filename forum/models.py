@@ -31,6 +31,10 @@ class Comment(models.Model):
     def get_absolute_url(self):
         return self.ticket.get_absolute_url()
     
+    def is_liked_by(self, user):
+        return self.likes.filter(creator=user).exists()
+
+
 class CommentLike(models.Model):
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name="likes")
     creator = models.ForeignKey(User, on_delete=models.CASCADE)

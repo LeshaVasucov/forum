@@ -7,12 +7,12 @@
         <p>{{ ticket.created_at }}</p>
     </div>
     <div class="comment">
-        {% for comment in ticket.comments.all %}
+        {% for comment in comments %}
         <p>{{ comment.creator }}</p>
         <p>{{ comment.content }}</p>
         <form action="{% url 'comment-like' comment.id %}" method="post">
             {% csrf_token %}
-        <button type="submit" ><p>Likes : {{ comment.likes.count}} </p></button>
+        <button type="submit"  class="{% if comment.is_liked_by_user %}liked{% else %}like{% endif %}">Likes: {{ comment.likes.count }} </button>
         </form>
         {% endfor %}
     </div>

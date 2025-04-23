@@ -24,8 +24,13 @@ class CreateTicket(CreateView):
 
 def TicketDetails(request, pk):
     ticket = Ticket.objects.get(id=pk)
+    comments = ticket.comments.all()
+    for comment in comments:
+        comment.is_liked_by_user = comment.likes.filter(creator=request.user).exists()
+
     context = {
         'ticket' : ticket,
+        'comments': comments, 
         'comment_form': CommentForm
     }
 
