@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<p>{{profile.user}}</p>
+<p>{{profile.description}}</p>
+<h3>Задані питання :</h3>
+{% for ticket in profile.tickets.all %}
+    <div class="container">
+    <a href="{%url 'ticket-details' ticket.pk %}">{{ticket.title}}</a>
+    </div>
+{% endfor %}
+{% endblock %}

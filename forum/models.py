@@ -22,6 +22,14 @@ class Ticket(models.Model):
         return reverse('ticket-details', kwargs={'pk': self.pk})
     
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    Profile_image = models.FileField(upload_to="profile_images/", blank=True, null=True)
+    description = models.TextField()
+    tickets = models.ManyToManyField(Ticket, blank=True)
+
+
+
 class Comment(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE, related_name="comments")
     creator = models.ForeignKey(User, on_delete=models.DO_NOTHING)

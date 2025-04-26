@@ -7,6 +7,7 @@
                 <div class="item">
                     <a href="{%url 'ticket-details' ticket.pk%}"> {{ticket.title}}</a>
                     <p> {{ticket.description}}</p>
+                    <a href="{% url 'profile' ticket.creator.pk %}"><p>Автор : {{ticket.creator}}</p></a>
                 </div>
             </div>
         {% endfor %}

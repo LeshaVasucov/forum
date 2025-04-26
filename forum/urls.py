@@ -6,4 +6,5 @@ urlpatterns = [
     path("create-ticket", views.CreateTicket.as_view(), name="ticket-create"),
     path("comment-create<int:pk>", views.CommentCreate , name="comment-create"),
     path("comment-like<int:pk>", views.CommentLikeAdd, name="comment-like"),
+    path("profile<int:pk>", views.ProfileView, name="profile")
 ]

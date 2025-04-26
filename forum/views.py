@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect , HttpResponseRedirect
-from forum.models import Ticket , Comment , CommentLike
+from forum.models import Ticket , Comment , CommentLike , Profile
 from forum.forms import TicketForm , CommentForm
 from django.views.generic import ListView , CreateView 
 from django.urls import reverse_lazy
@@ -19,9 +19,16 @@ class CreateTicket(CreateView):
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
+
+        profile = self.request.user.profile 
+
+        ticket = form.save()
+        print(profile , ticket)
+        profile.tickets.add(ticket)  
+        profile.save()
+
         return super().form_valid(form)
-
-
+    
 def TicketDetails(request, pk):
     ticket = Ticket.objects.get(id=pk)
     comments = ticket.comments.all()
@@ -59,3 +66,12 @@ def CommentLikeAdd(request, pk):
             CommentLike.objects.create(comment=comment, creator=request.user)
         return HttpResponseRedirect(comment.get_absolute_url())
     
+
+def ProfileView(request, pk):
+    profile = Profile.objects.get(id=pk)
+
+    context = {
+        "profile" : profile
+    }
+
+    return render(request, "forum/profile.html", context)

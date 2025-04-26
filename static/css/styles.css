@@ -1,39 +1,59 @@
 .container {
-    margin-bottom: 20px; 
-    padding: 10px;
-    border: 1px solid #ddd; 
-    border-radius: 8px; 
-    background-color: #f9f9f9; 
-    max-width: 600px;    
-    min-width: 600px;    
-    max-height: 200px;   
-    min-height: 50px;   
-  }
+  margin-bottom: 5px; 
+  padding: 10px;
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+  background-color: #f9f9f9; 
+  max-width: 600px;    
+  min-width: 600px;    
+  max-height: 150px;   
+  min-height: 50px;   
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* Вертикальное размещение элементов */
+  justify-content: flex-start; /* Размещение сверху */
+}
 
 .item {
-    padding: 10px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  }
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: -webkit-box; /* Для поддержки многократных строк */
+  -webkit-box-orient: vertical; /* Вертикальная ориентация */
+  -webkit-line-clamp: 3; /* Ограничиваем 3 строки для Safari/старых браузеров */
+  line-clamp: 3; /* Стандартное свойство для современных браузеров */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Делаем троеточие при переполнении */
+}
 
 .item a {
-    font-size: 18px;
-    color: #007bff;
-    text-decoration: none; 
-    font-weight: bold;
-  }
+  font-size: 18px;
+  color: #007bff;
+  text-decoration: none; 
+  font-weight: bold;
+  display: block; /* Сделать ссылку блочным элементом, чтобы она занимала всю ширину */
+}
 
 .item a:hover {
-    text-decoration: underline; 
-  }
+  text-decoration: underline; 
+}
 
 .item p {
-    color: #333;
-    font-size: 14px;
-    margin-top: 10px;
-  }
+  color: #333;
+  font-size: 14px;
+  margin-top: 10px;
+  display: -webkit-box; 
+  -webkit-box-orient: vertical; 
+  -webkit-line-clamp: 3; 
+  line-clamp: 3; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  word-wrap: break-word; 
+}
 
 header {
   display: flex;

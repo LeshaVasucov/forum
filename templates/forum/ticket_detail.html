@@ -2,9 +2,10 @@
 {% block content %}
 <body>
     <div class="ticket-details" >
-        <h1>{{ ticket.title }} - {{ ticket.status }}</h1>
+        <h1>{{ ticket.title }}</a> - {{ ticket.status }}</h1>
         <p>{{ ticket.description}}</p>
         <p>{{ ticket.created_at }}</p>
+        <p style="text-align: right;">Автор : <a  href="{% url 'profile' ticket.creator.pk %}">{{ ticket.creator }}</p></a>
     </div>
     <div class="comment">
         {% for comment in comments %}
@@ -17,7 +18,7 @@
         {% endfor %}
     </div>
     <div>
-        <h3>Залишити коментар:</h3>
+        <h3>Відповісти :</h3>
         <form action="{% url 'comment-create' ticket.id %}" method="post">
             {% csrf_token %}
             {{ comment_form.as_p }}

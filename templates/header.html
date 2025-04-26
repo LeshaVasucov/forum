@@ -8,6 +8,7 @@
         {% endif %}
         {% if request.path != '/create-ticket'%}
             <a href="/create-ticket"><p>Задати питання</p></a>
+      
         {% endif %}
         </div>
         <div>
@@ -16,6 +17,9 @@
                 <a href="/login"><p>Авторизуватись</p></a>
             {% else %}
                 <a href="/logout"><p>Выйти з аккаунту</p></a>
+                {% if not request.resolver_match.url_name == 'profile'%}
+                    <a href="{%url 'profile' user.pk%}"><p>Мій профіль</p></a>
+                {% endif %}
             {% endif %}
         </div>
     </header>

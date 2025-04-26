@@ -2,6 +2,7 @@ from django.shortcuts import render , redirect
 from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
 from django.contrib.auth import login , authenticate , logout
 from django.contrib import messages
+from forum.models import Profile
 # Create your views here.
 
 def register_view(request):
@@ -9,6 +10,8 @@ def register_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            profile = Profile.objects.create(user=user)
+            profile.save()
             login(request, user)
             return redirect("/")
     else:
