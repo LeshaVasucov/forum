@@ -7,6 +7,10 @@
         <p>{{ ticket.created_at }}</p>
         <p style="text-align: right;">Автор : <a  href="{% url 'profile' ticket.creator.pk %}">{{ ticket.creator }}</p></a>
     </div>
+    <div class="container">
+        <p>Ai answer</p>
+        <p>{{aianswer}}</p>
+    </div>
     <div class="comment">
         {% for comment in comments %}
         <p>{{ comment.creator }}</p>

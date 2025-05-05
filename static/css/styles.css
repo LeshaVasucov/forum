@@ -1,3 +1,6 @@
+body {
+  background-color: #fafafa;
+}
 .container {
   margin-bottom: 5px; 
   padding: 10px;
@@ -10,8 +13,8 @@
   min-height: 50px;   
   overflow: hidden;
   display: flex;
-  flex-direction: column; /* Вертикальное размещение элементов */
-  justify-content: flex-start; /* Размещение сверху */
+  flex-direction: column; 
+  justify-content: flex-start; 
 }
 
 .item {
@@ -22,12 +25,12 @@
   margin-bottom: 5px;
   box-sizing: border-box;
   overflow: hidden;
-  display: -webkit-box; /* Для поддержки многократных строк */
-  -webkit-box-orient: vertical; /* Вертикальная ориентация */
-  -webkit-line-clamp: 3; /* Ограничиваем 3 строки для Safari/старых браузеров */
-  line-clamp: 3; /* Стандартное свойство для современных браузеров */
+  display: -webkit-box; 
+  -webkit-box-orient: vertical; 
+  -webkit-line-clamp: 3; 
+  line-clamp: 3; 
   overflow: hidden;
-  text-overflow: ellipsis; /* Делаем троеточие при переполнении */
+  text-overflow: ellipsis; 
 }
 
 .item a {
@@ -35,7 +38,7 @@
   color: #007bff;
   text-decoration: none; 
   font-weight: bold;
-  display: block; /* Сделать ссылку блочным элементом, чтобы она занимала всю ширину */
+  display: block; 
 }
 
 .item a:hover {
@@ -154,3 +157,4 @@ header a p:hover {
   font-size: 13px;
   cursor: pointer;
 }
+

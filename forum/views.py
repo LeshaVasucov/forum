@@ -3,7 +3,10 @@ from forum.models import Ticket , Comment , CommentLike , Profile
 from forum.forms import TicketForm , CommentForm
 from django.views.generic import ListView , CreateView 
 from django.urls import reverse_lazy
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from Aianswers.views import AiAnswerCreate
+from Aianswers.models import AiAnswer
 class TicketsListView(ListView):
     model = Ticket
     context_object_name = "tickets"
@@ -12,7 +15,7 @@ class TicketsListView(ListView):
         context = super().get_context_data(**kwargs)
         return context
 
-class CreateTicket(CreateView):
+class CreateTicket(LoginRequiredMixin, CreateView):
     model = Ticket
     success_url = reverse_lazy("ticket-list")
     form_class = TicketForm
@@ -21,16 +24,18 @@ class CreateTicket(CreateView):
         form.instance.creator = self.request.user
 
         profile = self.request.user.profile 
-
+        response = super().form_valid(form)
         ticket = form.save()
         print(profile , ticket)
         profile.tickets.add(ticket)  
         profile.save()
+        AiAnswerCreate(pk=ticket.pk)
 
-        return super().form_valid(form)
-    
+        return response
+@login_required 
 def TicketDetails(request, pk):
     ticket = Ticket.objects.get(id=pk)
+    ai_answer = AiAnswer.objects.get(id=pk)
     comments = ticket.comments.all()
     for comment in comments:
         comment.is_liked_by_user = comment.likes.filter(creator=request.user).exists()
@@ -38,11 +43,12 @@ def TicketDetails(request, pk):
     context = {
         'ticket' : ticket,
         'comments': comments, 
-        'comment_form': CommentForm
+        'comment_form': CommentForm,
+        'aianswer' : ai_answer.text,
     }
 
     return render(request, "forum/ticket_detail.html", context)
-
+@login_required
 def CommentCreate(request, pk):  
     ticket = Ticket.objects.get(id=pk)
     if request.method == "POST":
@@ -55,7 +61,7 @@ def CommentCreate(request, pk):
             return redirect("ticket-details", pk=ticket.pk)
     else:
         comment_form = CommentForm()
-    
+@login_required
 def CommentLikeAdd(request, pk):
     if request.method == "POST":
         comment = Comment.objects.get(id=pk)
